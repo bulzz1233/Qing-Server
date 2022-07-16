@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qing.qingboot.mapper.SportsMapper">
+    <update id="updateAdd">
+        update sport set sport_likes = sport_likes+1 where sid = #{sid}
+    </update>
+    <update id="updateReduce">
+        update sport set sport_likes = sport_likes-1 where sid = #{sid}
+
+    </update>
+
+    <select id="queryList" resultType="com.qing.qingboot.bean.vo.JwtSportVO">
+        select *
+        from sport
+
+            where sport_name like concat('%',#{search},'%') or sport_type like  concat('%',#{search},'%') or sport_fit like  concat('%',#{search},'%')
+
+        order by sport_name desc
+    </select>
+    <select id="searchType" resultType="com.qing.qingboot.bean.vo.JwtSportVO">
+        select *
+        from sport
+        where sport_type like concat('%',#{type},'%')
+
+        order by sport_likes desc
+    </select>
+    <select id="searchFit" resultType="com.qing.qingboot.bean.vo.JwtSportVO">
+        select *
+        from sport
+        where sport_fit like concat('%',#{fit},'%')
+
+        order by sport_likes desc
+    </select>
+    <select id="allSport" resultType="com.qing.qingboot.bean.vo.JwtSportVO">
+        select *
+        from sport
+    </select>
+</mapper>

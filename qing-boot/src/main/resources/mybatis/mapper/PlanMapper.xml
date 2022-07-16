@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qing.qingboot.mapper.PlanMapper">
+    <update id="updateId">
+        update plan set plan_done = true where plan_id = #{pid}
+    </update>
+    <delete id="delById">
+        delete from plan where plan_id = #{pid}
+    </delete>
+
+    <select id="all" resultType="com.qing.qingboot.bean.vo.PlanVO">
+        select * from plan where user_id = #{uid} order by plan_date
+    </select>
+</mapper>
